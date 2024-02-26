@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Indicator</title>
+</head>
+<body>
+    <h1>Health Indicator</h1>
+    <form id="healthForm">
+        <!-- Add input fields for push_up, pull_up, squats, fivekm_time, crunches -->
+        <input type="text" id="push_up" placeholder="Push Up">
+        <input type="text" id="pull_up" placeholder="pull_up">
+        <input type="text" id="squat" placeholder="squat">
+        <input type="text" id="fivekm_time" placeholder="fivekm_time">
+        <input type="text" id="crunches" placeholder="crunches">
+        <button type="button" onclick="calculateHealth()">Calculate</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        function calculateHealth() {
+            var data = {
+                "push_up": document.getElementById('push_up').value,
+                "pull_up": document.getElementById('pull_up').value,
+                "squat": document.getElementById('squat').value,
+                "fivekm_time": document.getElementById('fivekm_time').value,
+                "crunches": document.getElementById('crunches').value
+            };
+
+            fetch('/calculate_health', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                document.getElementById('result').innerHTML = `
+                    <p>Your overall fitness level is: ${result.overall_score} out of 100</p>
+                    <p>Your push up level is: ${result.push_up}</p>
+                    <p>Your pull up level is: ${result.pull_up}</p>
+                    <p>Your squat level is: ${result.squat}</p>
+                    <p>Your 5k level is: ${result.fivekm_time}</p>
+                    <p>Your crunches level is: ${result.crunches}</p>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
