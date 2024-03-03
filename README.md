@@ -1,13 +1,16 @@
 1. What problem is this solving?
-People are terrible judge of their own health and that's largely due to a lack of a metric that they can refer to for their health. It's a hidden metric, and the task here is to reveal it.
+---------------------------------------
+People are terrible judge of their own fitness and one possible reason for this is that our fitness can be a hidden metric. It's hard to judge how healthy you are compared to others in your age group.
 
 2. What am I building?
-I'm building a tool that allows users to enter common fitness metrics and that will be used to generate one single fitness score.
+---------------------------------------
+I'm building a tool that allows users to refer to a single fitness score based on general fitness metrics.
 
-
-3. Why the market is interesting?
-People are interested in their body more than ever, as can be seen with the large fitness wearable market.
-
-Sources:
+Source for data:
 https://strengthlevel.com/strength-standards/push-ups/kg
 https://runninglevel.com/running-times/5k-times#google_vignette
+
+3. Why the market is interesting?
+---------------------------------------
+People are interested in their body more than ever, there are more and more health youtube channels and the whole fitness wearable market proves this.
+

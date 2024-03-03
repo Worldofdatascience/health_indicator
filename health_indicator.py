@@ -1,4 +1,6 @@
 import json
+import csv
+from datetime import datetime
 
 
 class HealthIndicator:
@@ -41,22 +43,23 @@ class HealthIndicator:
             fivekm_time_norm,
             crunches_norm
             )
+        
+        current_date, week_number = self.get_date_and_week()
 
-        return overall_score, push_up_norm, pull_up_norm, squat_norm, fivekm_time_norm, crunches_norm
+        result = {
+            'week_number' : week_number,
+            'current_date': current_date,
+            'overall_score': overall_score,
+            'push_up_norm': push_up_norm,
+            'pull_up_norm': pull_up_norm,
+            'squat_norm': squat_norm,
+            'fivekm_time_norm': fivekm_time_norm,
+            'crunches_norm': crunches_norm
+            }
 
+        return result
     
-# Readin json file
-json_file = "test_folder/input_data.json"
-with open(json_file, 'r') as file:
-    file = json.load(file)
-
-health_indicator = HealthIndicator(file)
-overall_score,  push_up_norm, pull_up_norm, squat_norm, fivekm_time_norm, crunches_norm = health_indicator.overall_score()
-print("Your overall fitness level is: " + str(overall_score) +" out of 100")
-print("---------------------------------------------")
-print("Your push up level is: " +str(push_up_norm))
-print("Your pull up level is: " +str(pull_up_norm)) 
-print("Your squat level is: " +str(squat_norm))
-print("Your 5k level is: " +str(fivekm_time_norm))
-print("Your crunches level is: " +str(crunches_norm))
-
+    def get_date_and_week(self):
+        current_date = datetime.now()
+        week_number = current_date.isocalendar()[1]
+        return current_date, week_number
